@@ -1,6 +1,10 @@
-from tkinter import *
+from tkinter import * #GUI library
+import tkinter.messagebox
 
-class gui:
+# @author: Carson Wood
+# Sends automated emails out for lab attendant job
+
+class GUI:
     def __init__(self, master):
         frame = Frame(master)
         frame.pack()
@@ -8,7 +12,7 @@ class gui:
         student_info_frame = Frame(frame)
         student_info_frame.pack(side=TOP)
         labattendant_info_frame = Frame(frame)
-        labattendant_info_frame.pack(side=BOTTOM)
+        labattendant_info_frame.pack(side=TOP)
 
         # Student name, email, item
         student_name_label = Label(student_info_frame, text="Student name: ")
@@ -41,10 +45,22 @@ class gui:
         labattendant_lab_menu = OptionMenu(labattendant_info_frame, lab_defualt, "MCT054", "CUB124", "GRH106")
         labattendant_lab_menu.grid(row=5, column=1)
 
+        # Button handler for the submit button
+        def submit_on_click():
+            if "@ship.edu" not in labattendant_email_entry.get():
+                tkinter.messagebox.showwarning("Error", "Please use your @ship.edu email.")
+                labattendant_email_entry.delete(0, 'end')
+            print(student_email_entry.get())
+            print(student_name_entry.get())
+            print(student_item_entry.get().lower())
+            print(labattendant_email_entry.get())
+            print(labattendant_password_entry.get())
+            print(labattendant_lab_menu.cget("text"))
+
         # Collects data and sends it
-        # submit_button = Button(self, text="Send Email", command=self.button_handle)
-        # submit_button.pack(side=BOTTOM)
+        submit_button = Button(frame, text="Send Email", command=submit_on_click)
+        submit_button.pack(side=BOTTOM)
 
 root = Tk()
-gui = gui(root)
+GUI = GUI(root)
 root.mainloop()
