@@ -1,8 +1,69 @@
-from tkinter import * #GUI library
+from tkinter import *  # GUI library
 import tkinter.messagebox
+import smtplib
 
 # @author: Carson Wood
 # Sends automated emails out for lab attendant job
+
+class Student:
+    def __init__(self, name, email, item):
+        self.name = name
+        self.email = email
+        self.item = item
+
+    @property
+    def email(self):
+        return self.email
+
+    @email.setter
+    def email(self, email):
+        self.email = email
+
+    @property
+    def name(self):
+        return self.name
+
+    @name.setter
+    def name(self, name):
+        self.name = name
+
+    @property
+    def item(self):
+        return self.item
+
+    @item.setter
+    def item(self, item):
+        self.item = item
+
+class LabAttendant:
+    def __init__(self, email, password, lab):
+        self.email = email
+        self.password = password
+        self.lab = lab
+
+    @property
+    def email(self):
+        return self.email
+
+    @email.setter
+    def email(self, email):
+        self.email = email
+
+    @property
+    def password(self):
+        return self.password
+
+    @password.setter
+    def password(self, password):
+        self.password = password
+
+    @property
+    def lab(self):
+        return self.lab
+
+    @lab.setter
+    def lab(self, password):
+        self.password = password
 
 class GUI:
     def __init__(self, master):
@@ -50,12 +111,7 @@ class GUI:
             if "@ship.edu" not in labattendant_email_entry.get():
                 tkinter.messagebox.showwarning("Error", "Please use your @ship.edu email.")
                 labattendant_email_entry.delete(0, 'end')
-            print(student_email_entry.get())
-            print(student_name_entry.get())
-            print(student_item_entry.get().lower())
-            print(labattendant_email_entry.get())
-            print(labattendant_password_entry.get())
-            print(labattendant_lab_menu.cget("text"))
+
 
         # Collects data and sends it
         submit_button = Button(frame, text="Send Email", command=submit_on_click)
