@@ -8,7 +8,9 @@ that writes it for me except I fill in a few blanks.
 # To do
 ## GUI
     -Handle when user inputs nothing
-    -Handle when user enters invalid emails
+    -Add handling of bad input
     -Make it look pretty
+    -Remove the lab attendant email and password unless figure out how to work it with ship email (need to contact Jamie or networking at school)
 
-## None of the email part has been made yet.
+## SendEmail
+    -Capitalize the first letter of the item so "Flash drive left in MCT054" instead of "flash drive left in MCT054" in subject
