@@ -14,3 +14,5 @@ that writes it for me except I fill in a few blanks.
 
 ## SendEmail
     -Capitalize the first letter of the item so "Flash drive left in MCT054" instead of "flash drive left in MCT054" in subject
+    
+-Make it a .exe executable file. http://www.pyinstaller.org/
