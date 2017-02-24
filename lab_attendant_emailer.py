@@ -1,12 +1,17 @@
 from tkinter import *  # GUI library
 import tkinter.messagebox
-import smtplib
+import smtplib #SMTP library
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 # @author: Carson Wood
+# Email: carsnwd@gmail.com
 # Sends automated emails out for lab attendant job
 
+###
+# Object to store student info gathered
+# from GUI input (name, email, item left)
+###
 class Student:
     def __init__(self, name, email, item):
         self.name = name
@@ -37,9 +42,14 @@ class Student:
     def sitem(self, item):
         self.item = item
 
+###
+# Object for lab attendant email.
+# Semi-useless object, may consider removing and
+# just hard coding this in.
+###
 class LabAttendant:
     def __init__(self, email, password, lab):
-        self.email = email
+        self.email = email 
         self.password = password
         self.lab = lab
 
@@ -66,13 +76,20 @@ class LabAttendant:
     @llab.setter
     def llab(self, password):
         self.password = password
-
+###
+# Method to send out the emails
+# utilizing SMTPlib
+###
 def SendEmail(labattendant, student):
-    message = MIMEMultipart()
+    message = MIMEMultipart() 
     message['From'] = labattendant.email
     message['To'] = student.email
     message['Subject'] = student.item + " left in " + labattendant.lab + " computer lab."
-    if(labattendant.lab == "GRH106"):
+    
+    #Grove has different hours than other labs, so seperate condition. 
+    #Refactor to seperate method?
+    if(labattendant.lab == "GRH106"): 
+        #Various wordings of the email for different situations
         if "id" == student.item: #Left ID in Grove
             body = "Hello " + student.name + ",\nI believe you left your " + student.item + " in the " + labattendant.lab\
                    + " computer lab. If so, please stop by the " + labattendant.lab\
@@ -96,6 +113,7 @@ def SendEmail(labattendant, student):
                    + " to you.\n\n" + "Lab attendants should be in the " + labattendant.lab + " computer lab Monday through Thursday 8AM-10PM, Friday 8AM-4PM, and weekends 12PM-6PM.\n\n"+ "Thank you!\n-Lab Attendant"
     message.attach(MIMEText(body, 'plain'))
 
+    #Send email
     server = smtplib.SMTP("smtp.gmail.com")
     server.ehlo()
     server.starttls()
@@ -104,7 +122,9 @@ def SendEmail(labattendant, student):
     text = message.as_string()
     server.sendmail(labattendant.email, student.email, text)
 
-
+###
+# The mess that is writing a GUI.
+###
 class GUI:
     def __init__(self, master):
         frame = Frame(master)
