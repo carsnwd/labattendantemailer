@@ -6,13 +6,8 @@ to email them saying the left it. Instead of writing out this email every single
 that writes it for me except I fill in a few blanks.
 
 # To do
-## GUI
     -Handle when user inputs nothing
     -Add handling of bad input
     -Make it look pretty
-    -Remove the lab attendant email and password unless figure out how to work it with ship email (need to contact Jamie or networking at school)
-
-## SendEmail
-    -Capitalize the first letter of the item so "Flash drive left in MCT054" instead of "flash drive left in MCT054" in subject
-    
--Make it a .exe executable file. http://www.pyinstaller.org/
+    -Setup new email with @ship.edu with SMTP with Jamie
+    -Make it a .exe executable file. http://www.pyinstaller.org/
